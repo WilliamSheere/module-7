@@ -6,28 +6,28 @@ import generateMarkdown from "./utils/generateMarkdown.js";
 const questions = [
 	{
 		type: "input",
-		name: "Title",
+		name: "title",
 		message: "What's the title of your project?",
 	},
 	{
 		type: "input",
-		name: "Description",
+		name: "description",
 		message: "What's the descrption of your project?",
 	},
 	{
 		type: "list",
 		name: "license",
 		message: "What's the license for your project?",
-		choices: ["choice 1", "choice 2", "choice 3"],
+		choices: ["MIT", "Apache", "None"],
 	},
 	{
 		type: "input",
-		name: "GitHub username",
+		name: "github",
 		message: "What's your GitHub username?",
 	},
 	{
 		type: "input",
-		name: "E-mail",
+		name: "email",
 		message: "What's your E-mail address?",
 	},
 ];
@@ -45,9 +45,9 @@ function writeToFile(fileName, data) {
 }
 
 // TODO: Create a function to initialize app
-function init() {
-    inquirer.prompt(questions)
-}
+// function init() {
+//     inquirer.prompt(questions)
+//}
 
 // Function call to initialize app
 //init();
@@ -55,8 +55,9 @@ function init() {
 	inquirer
 		.prompt(questions)
 		.then((answers) => {
+			console.log (answers)
 			const ReadmeContent = generateMarkdown(answers); // Call the function to generate markdown
-			writeToFile("README.md", ReadmeContent); // Write the generated markdown to a file
+			writeToFile("dist/README.md", ReadmeContent); // Write the generated markdown to a file
 		})
 		.catch((error) => {
 			console.error("Error during Initialization :", error);
